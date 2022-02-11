@@ -1,0 +1,43 @@
+---
+title: "New paper markdown file"
+author: "Gaspar Jekely"
+output: html_document
+geometry: left=0.8in,right=0.8in,top=0.8in,bottom=0.5in
+bibliography: references.bib
+csl: elife.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+**text in bold** *italic*
+
+## Introduction
+
+add a reference:
+
+*Platynereis dumerilii* is a... [@ozpolat2021]
+
+## Results
+
+Including Figures
+
+You can add your figures into the rendered document:
+
+You can also embed plots, for example: (to define the path, go up one dir from /text and go into /figures)
+
+![Figure 1](../figures/Figure1.png)
+
+## Acknowledgements
+
+We would like to thank Liz Williams for being awesome. This work was funded by the Wellcome Trust grant number:...
+
+## References {.unnumbered}
+
+::: {#refs}
+:::
