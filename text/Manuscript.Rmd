@@ -1,7 +1,9 @@
 ---
 title: "New paper markdown file"
 author: "Gaspar Jekely"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 geometry: left=0.8in,right=0.8in,top=0.8in,bottom=0.5in
 bibliography: references.bib
 csl: elife.csl
@@ -27,9 +29,7 @@ add a reference:
 
 Including Figures
 
-You can add your figures into the rendered document:
-
-You can also embed plots, for example: (to define the path, go up one dir from /text and go into /figures)
+You can add your figures into the rendered document (to define the path, go up one dir from /text and go into /figures):
 
 ![Figure 1](../figures/Figure1.png)
 
