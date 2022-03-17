@@ -35,7 +35,8 @@ You can add your figures into the rendered document (to define the path, go up o
 
 ## Acknowledgements
 
-We would like to thank Liz Williams for being awesome. This work was funded by the Wellcome Trust grant number:...
+We would like to thank the Jekely lab for the awesome Rproject template (https://github.com/JekelyLab/new_paper_template) we used to write this paper.
+
 
 ## References {.unnumbered}
 
