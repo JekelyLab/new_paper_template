@@ -7,13 +7,12 @@ library(cowplot)
 library(png)
 library(patchwork)
 
-#check working directory- should be the project dir, all directories will be defined relative to this dir
-getwd()
 
-################################
-#Load and process the data
+# Load and process the data -----------------------------------------------
 #read some pre-processed data text/csv file from the /data directory
 syn_df <- read.csv2("data/head_celltypes_syn_matrix.csv", row.names=1)
+
+syn_df
 
 #check the loaded data
 syn_df[1:10,1:10]
@@ -29,9 +28,8 @@ syn_tb <- as.data.frame(syn_df) %>%
 #check the tibble
 syn_tb$presyn_cell_group
 
+# visualise the data and save plot ----------------------------------------
 
-#####################################
-#visualise the data and save plot
 #plot with ggplot
 ggplot(syn_tb) +
   geom_point(aes(x = postsyn_cell_group, y = presyn_cell_group, size = sqrt(synapses), color = synapse_fraction), 
@@ -67,21 +65,36 @@ ggsave("pictures/head_celltypes_syn_matrix.png",
        height = 1400, limitsize = TRUE, 
        units = c("px"))
 
-############################################
-#save the table as supplementary file
+
+# save the table as supplementary file ------------------------------------
 #write table
 readr::write_csv(syn_tb, file="supplements/Supplementary_table1.csv", na="", quote="none")
 
 
 
-###################################################
-#assemble figure
+# assemble figure ---------------------------------------------------------
 
 #read png convert to image panel
-panelA <- ggdraw() + draw_image(readPNG("pictures/Platynereis_SEM_inverted.png"), scale = 1)
+panelA <- ggdraw() + draw_image(readPNG("pictures/Platynereis_SEM_inverted_nolabel.png"), scale = 1) + 
+  draw_label("Platynereis larva", x = 0.5, y = 0.95, fontfamily = "sans", fontface = "plain",
+             color = "black", size = 11, angle = 0, lineheight = 0.9, alpha = 1) +
+  draw_label(expression(paste("50 ", mu, "m")), x = 0.2, y = 0.11, fontfamily = "sans", fontface = "plain",
+             color = "black", size = 10, angle = 0, lineheight = 0.9, alpha = 1) + 
+  draw_label("head", x = 0.5, y = 0.85, fontfamily = "sans", fontface = "plain",
+             color = "black", size = 9, angle = 0, lineheight = 0.9, alpha = 1) + 
+  draw_label("sg0", x = 0.52, y = 0.67, fontfamily = "sans", fontface = "plain",
+             color = "black", size = 9, angle = 0, lineheight = 0.9, alpha = 1) + 
+  draw_label("sg1", x = 0.51, y = 0.55, fontfamily = "sans", fontface = "plain",
+             color = "black", size = 9, angle = 0, lineheight = 0.9, alpha = 1) + 
+  draw_label("sg2", x = 0.52, y = 0.4, fontfamily = "sans", fontface = "plain",
+             color = "black", size = 9, angle = 0, lineheight = 0.9, alpha = 1) + 
+  draw_label("sg3", x = 0.54, y = 0.2, fontfamily = "sans", fontface = "plain",
+             color = "black", size = 9, angle = 0, lineheight = 0.9, alpha = 1) + 
+  draw_label("pygidium", x = 0.55, y = 0.03, fontfamily = "sans", fontface = "plain",
+             color = "black", size = 9, angle = 0, lineheight = 0.9, alpha = 1)
 panelB <- ggdraw() + draw_image(readPNG("pictures/head_celltypes_syn_matrix.png"), scale = 1) + 
-    draw_label("Synaptic connectivity of head cell types", x = 0.45, y = 0.97, fontfamily = "sans", fontface = "plain",
-               color = "black", size = 8, angle = 0, lineheight = 0.9, alpha = 1)
+  draw_label("Synaptic connectivity of head cell types", x = 0.45, y = 0.97, fontfamily = "sans", fontface = "plain",
+             color = "black", size = 8, angle = 0, lineheight = 0.9, alpha = 1)
 
 
 #combine panels into Figure and save final figure as pdf and png
@@ -91,16 +104,13 @@ Fig1 <- plot_grid(panelA,panelB,
                   labels=c("A", "B"),
                   label_size = 12, label_y = 1, label_x = 0,
                   label_fontfamily = "sans", label_fontface = "plain") + 
-    theme(plot.margin = unit(c(1, 1, 1, 1), units = "pt"))
-
-#check in Plots panel
-Fig1  
+  theme(plot.margin = unit(c(1, 1, 1, 1), units = "pt"))
 
 #save
 ggsave("figures/Figure1.pdf", limitsize = FALSE, 
-         units = c("px"), Fig1, width = 1600, height = 800)
+       units = c("px"), Fig1, width = 1800, height = 850)
 ggsave("figures/Figure1.png", limitsize = FALSE, 
-         units = c("px"), Fig1, width = 1600, height = 800, bg='white')
+       units = c("px"), Fig1, width = 1800, height = 850, bg='white')
 
 
 
