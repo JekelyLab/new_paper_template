@@ -5,6 +5,7 @@ gc() #free up memory and report the memory usage.
 library(tidyverse)
 library(cowplot)
 library(png)
+library(patchwork)
 
 #check working directory- should be the project dir, all directories will be defined relative to this dir
 getwd()
