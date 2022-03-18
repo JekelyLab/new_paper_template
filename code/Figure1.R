@@ -157,7 +157,7 @@ Figure1 <- panelA + panelB + panelA + panelB +
 ggsave("figures/Figure1.pdf", limitsize = FALSE, 
        units = c("px"), Figure1, width = 3300, height = 2600)
 ggsave("figures/Figure1.png", limitsize = FALSE, 
-       units = c("px"), Figure1, width = 3000, height = 1700, bg = "white")
+       units = c("px"), Figure1, width = 3300, height = 2600, bg = "white")
 
 
 
