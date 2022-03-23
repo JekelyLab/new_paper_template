@@ -1,38 +1,27 @@
-rm(list = ls(all.names = TRUE)) #will clear all objects includes hidden objects.
-gc() #free up memory and report the memory usage.
-
-# load some packages
-library(tidyverse)
-library(cowplot)
-library(png)
-library(patchwork)
+#let's load some packages, listed in one file we will source
+source("code/packages_and_functions.R")
 
 
 # Load and process the data -----------------------------------------------
+
 #read some pre-processed data text/csv file from the /data directory
-syn_df <- read.csv2("data/head_celltypes_syn_matrix.csv", row.names=1)
+syn <- read_csv2("data/head_celltypes_syn_matrix.csv")
 
-syn_df
+syn
 
-#check the loaded data
-syn_df[1:10,1:10]
-dim(syn_df)
-
-#convert to tibble to have tidy data
-syn_tb <- as.data.frame(syn_df) %>%
-  rownames_to_column(var = "presyn_cell_group") %>%
-  pivot_longer(-presyn_cell_group, names_to = "postsyn_cell_group", values_to = "synapses")%>%
-  group_by(postsyn_cell_group) %>%
+#convert the matrix into a tibble in tidy format
+syn_tb <- syn_tb %>%
+  rename ("presyn_cell" = ...1) %>%
+  pivot_longer(-presyn_cell, names_to = "postsyn_cell", values_to = "synapses") %>%
   mutate(synapse_fraction = synapses / sum(synapses, na.rm = TRUE))
 
-#check the tibble
-syn_tb$presyn_cell_group
+syn_tb
 
 # visualise the data and save plot ----------------------------------------
 
 #plot with ggplot
 ggplot(syn_tb) +
-  geom_point(aes(x = postsyn_cell_group, y = presyn_cell_group, size = sqrt(synapses), color = synapse_fraction), 
+  geom_point(aes(x = postsyn_cell, y = presyn_cell, size = sqrt(synapses), color = synapse_fraction), 
              stroke = 0,)+ 
   theme(
     axis.text.x = element_text (angle = 90,hjust = 1, vjust = 0.5, size=3), 
