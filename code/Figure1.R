@@ -66,6 +66,7 @@ readr::write_csv(syn_tb, file="supplements/Supplementary_table1.csv", na="", quo
 #read the pictures from the /pictures folder
 img1 <- readPNG("pictures/Platynereis_SEM_inverted_nolabel.png")
 img2 <- readPNG("pictures/head_celltypes_syn_matrix.png")
+img3 <- readPNG("pictures/FVRIa_rhoPhall_31h_200um.png")
 
 #convert to image panel and add text labels with cowplot::draw_image 
 panelA <- cowplot::ggdraw() + cowplot::draw_image(img1, scale = 1) + 
@@ -89,8 +90,18 @@ panelB <- ggdraw() + draw_image(img2, scale = 1) +
   draw_label("Synaptic connectivity", x = 0.4, y = 0.99, fontfamily = "sans", fontface = "plain",
              color = "black", size = 11, angle = 0, lineheight = 0.9, alpha = 1)
 
+panelC <- ggdraw() + draw_image(img3, scale = 1) + 
+  draw_label("anti-FVRIamide", x = 0.3, y = 0.99, fontfamily = "sans", fontface = "plain",
+             color = "#0072B2", size = 11, angle = 0, lineheight = 0.9, alpha = 1) + 
+  draw_label("rhoPhalloidin", x = 0.8, y = 0.99, fontfamily = "sans", fontface = "plain",
+             color = "#D55E00", size = 11, angle = 0, lineheight = 0.9, alpha = 1) +
+  draw_line(x = c(0.1, 0.3), y = c(0.07, 0.07), color = "black", size = 1) +
+  draw_label(expression(paste("40 ", mu, "m")), x = 0.2, y = 0.1, fontfamily = "sans", fontface = "plain",
+             color = "black", size = 10, angle = 0, lineheight = 0.9, alpha = 1)
+
+
 #clear the images from memory
-rm(img1,img2)
+#rm(img1, img2, img3)
 
 
 # assemble final  figure with patchwork -----------------------------------
@@ -131,7 +142,7 @@ IIJJKKKK
 #it is not necessary to enter all the tags e.g., c("A", "B", "C", "D"), patchwork
 #takes care of that if we define the tag_levels only
 Figure1 <- panelA + panelB + panelA + panelB + 
-  panelA + panelB + panelB +  
+  panelC + panelB + panelB +  
   panelA + panelB +  
   patchwork::plot_layout(design = layout2, heights = c(1, 1, 0.05, 0.05, 1, 1, 0.05, 0.05, 1, 1)) + #we can change the heights of the rows in our layout (widths also can be defined)
   patchwork::plot_annotation(tag_levels = "A") &  #we can change this to 'a' for small caps or 'i' or '1'
@@ -144,9 +155,9 @@ Figure1 <- panelA + panelB + panelA + panelB +
 #height of the figure properly, so that your panels fit nicely - you may have to try a few times
 
 ggsave("figures/Figure1.pdf", limitsize = FALSE, 
-       units = c("px"), Figure1, width = 3300, height = 2600)
+       units = c("px"), Figure1, width = 3300, height = 2800)
 ggsave("figures/Figure1.png", limitsize = FALSE, 
-       units = c("px"), Figure1, width = 3300, height = 2600, bg = "white")
+       units = c("px"), Figure1, width = 3300, height = 2800, bg = "white")
 
 
 
