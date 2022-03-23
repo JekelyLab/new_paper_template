@@ -1,4 +1,4 @@
-#let's load some packages, listed in one file we will source
+#let's source some packages, listed in one file
 source("code/packages_and_functions.R")
 
 
