@@ -1,0 +1,107 @@
+---
+title: "New paper template - title here"
+mainfont: Arial
+monofont: DejaVu Sans Mono #Times New Roman
+fontsize: 11pt
+linestretch: 1.2
+linkcolor: blue
+documentclass: article
+max-width: 100%
+format:
+  html: default
+  pdf:
+    pdf-engine: xelatex
+    number-sections: true
+    margin-left: 0.8in
+    margin-right: 0.8in
+    margin-top: 0.8in
+    margin-bottom: 0.8in
+    toc: true
+    keep-tex: true
+    include-in-header:
+      text: |
+        \usepackage{lineno}
+    include-before-body:
+      text: |
+        \linenumbers
+bibliography: references.bib #add bibliography in this file
+csl: elife.csl #change according to journal
+---
+\
+
+Author 1^1,2,\*^ , Author 2^2^, Author 3^1,2^\
+
+^1^Heidelberg University, Centre for Organismal Studies (COS), 69120 Heidelberg, Germany\
+^2^Living Systems Institute, University of Exeter, Exeter, EX4 4QD, United Kingdom\
+^\*^Correspondence: corr_author\@email.com
+
+## Abstract
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+**text in bold** *italic* [underline]{.underline}
+
+## Introduction
+
+You can add references either by referring to their id in the .bib file e.g., [@Marinkovi2020], or by switching to the visual editor (Cogwheel in the .Rmd menu -\> Use Visual Editor).
+
+In the visual editor mode, go to 'Insert' -\> \@ Citation
+
+You can select a Zotero library, PubMed, CrossRef etc. and insert the citations.
+
+The easiest way is to use the command line:
+
+```{bash}
+#| echo: true
+#| eval: false
+
+curl -LH "Accept: application/x-bibtex" https://doi.org/10.7554/eLife.91258.1 >> references.bib
+```
+
+*Platynereis dumerilii* is a marine annelid... [@ozpolat2021]
+
+The references are stored in manuscript/references.bib (need to be defined in the Yaml header). This file will automatically updated when you insert a new reference through the Visual editor \> Insert > Citations.
+
+In this documents, references will be formatted in the style of eLife. This is defined in the Yaml header under: csl: elife.csl. The elife.csl file is saved in the /manuscript folder.
+
+If you would like to use a different citation format, download the respective .csl file (e.g., from the Zotero style repository <https://www.zotero.org/styles>), save it in the /manuscript folder of the project and change the Yaml to csl: your_favourite_journal.csl.
+
+## Results
+
+Inserting Figures
+
+You can add your figures into the rendered document. We saved the figures into /manuscript/figures or /manuscript/figure_supplements and can insert them from there. We use knitr::include_graphics for this. The title and legend can also be edited, as will as the width of the output figure.
+
+```{r, out.width = "100%", fig.cap="**Figure 1. Title fig 1** (A) legend (B) legend. " }
+#| echo: false 
+
+knitr::include_graphics("figures/Figure1.png")
+```
+
+## Equations
+
+Equations can also be inserted, Insert -\> Display Math:
+
+$$
+\bar{X} = \frac{\sum_{i=1}^{n} x_{i}}{n}
+$$
+
+## Sourcing code and working with variable
+
+```{r}
+#| include: false
+#| eval: true
+source(here::here("analysis/scripts/statistics_for_paper.R"))
+```
+
+The 'analysis/scripts/statistics_for_paper.R' script is sourced and it runs but the output is not included in the knitted output. But we can access the variables defined in the sourced script simply by adding \` r var_name \` between \` backticks, in this case max_PRC value is `r max_PRC` (now this number comes from our sourced script).
+
+If we update the data, the script can recalculate the variable we want to refer to in the text and update the number.
+
+## Materials and Methods
+
+## Acknowledgements
+
+We would like to thank the Jekely lab for the R project template (<https://github.com/JekelyLab/new_paper_template>) we used to write this paper. This work was funded by ...
+
+## References
