@@ -1,0 +1,26 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  Code documentation for my paper
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: John
+    family-names: X
+    orcid: 'https://orcid.org/0000-0000-0000-0000'
+  - given-names: Jane
+    family-names: Y
+    orcid: 'https://orcid.org/0000-0000-0000-0001'
+  - given-names: other
+    family-names: authors
+    orcid: 'https://orcid.org/0000-0000----'
+identifiers:
+  - type: doi
+    value: add.the.zenodo.repository.doi
+repository-code: 'https://github.com/add_github_link'
+license: CC-BY-4.0
+date-released: '2024-02-14'
