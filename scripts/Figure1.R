@@ -1,16 +1,17 @@
-#let's source some packages, listed in one file
+# clean environment, source packages, colour palettes and functions ----------------
 source("code/packages_and_functions.R")
 
+#check working dir
+here::here()
 
-# Load and process the data -----------------------------------------------
+# load the data -----------------------------------------------
 
 #read some pre-processed data text/csv file from the /data directory
 syn <- read_csv2("data/head_celltypes_syn_matrix.csv")
-
 syn
 
-#convert the matrix into a tibble in tidy format
-syn_tb <- syn_tb %>%
+# tidy the data ------------------
+syn_tb <- syn %>%
   rename ("presyn_cell" = ...1) %>%
   pivot_longer(-presyn_cell, names_to = "postsyn_cell", values_to = "synapses") %>%
   mutate(synapse_fraction = synapses / sum(synapses, na.rm = TRUE))
@@ -20,7 +21,7 @@ syn_tb
 # visualise the data and save plot ----------------------------------------
 
 #plot with ggplot
-ggplot(syn_tb) +
+syn_plot <- ggplot(syn_tb) +
   geom_point(aes(x = postsyn_cell, y = presyn_cell, size = sqrt(synapses), color = synapse_fraction), 
              stroke = 0,)+ 
   theme(
@@ -42,7 +43,7 @@ ggplot(syn_tb) +
     guide = "colourbar",
     aesthetics = "colour") +
   theme(panel.background = element_rect(fill = "grey98", color = "white"))
-
+syn_plot
 
 # Save the plot as pdf and png
 ggsave("pictures/head_celltypes_syn_matrix.pdf", 
@@ -55,11 +56,10 @@ ggsave("pictures/head_celltypes_syn_matrix.png",
        units = c("px"))
 
 
-# save the table as supplementary file ------------------------------------
+# save the source data ------------------------------------
+
 #write table
-readr::write_csv(syn_tb, file="supplements/Supplementary_table1.csv", na="", quote="none")
-
-
+readr::write_csv(syn_tb, file="source_data/Figure1_source_data1.csv", na="", quote="none")
 
 # assemble figure ---------------------------------------------------------
 
@@ -86,6 +86,7 @@ panelA <- cowplot::ggdraw() + cowplot::draw_image(img1, scale = 1) +
              color = "black", size = 9, angle = 0, lineheight = 0.9, alpha = 1) + 
   draw_label("pygidium", x = 0.55, y = 0.03, fontfamily = "sans", fontface = "plain",
              color = "black", size = 9, angle = 0, lineheight = 0.9, alpha = 1)
+
 panelB <- ggdraw() + draw_image(img2, scale = 1) + 
   draw_label("Synaptic connectivity", x = 0.4, y = 0.99, fontfamily = "sans", fontface = "plain",
              color = "black", size = 11, angle = 0, lineheight = 0.9, alpha = 1)
@@ -98,11 +99,6 @@ panelC <- ggdraw() + draw_image(img3, scale = 1) +
   draw_line(x = c(0.1, 0.3), y = c(0.07, 0.07), color = "black", size = 1) +
   draw_label(expression(paste("40 ", mu, "m")), x = 0.2, y = 0.1, fontfamily = "sans", fontface = "plain",
              color = "black", size = 10, angle = 0, lineheight = 0.9, alpha = 1)
-
-
-#clear the images from memory
-#rm(img1, img2, img3)
-
 
 # assemble final  figure with patchwork -----------------------------------
 
@@ -134,13 +130,12 @@ EEFFKKKK
 IIJJKKKK
 IIJJKKKK
 "
-#you get the picture - you can define any layout and ratios with this representation
-
 #we now define which panel go into the figure and in which order, the layout
 #will be based on our textual definition above
 #we can also define the relative sizes of rows and columns and the tags to use
 #it is not necessary to enter all the tags e.g., c("A", "B", "C", "D"), patchwork
 #takes care of that if we define the tag_levels only
+
 Figure1 <- panelA + panelB + panelA + panelB + 
   panelC + panelB + panelB +  
   panelA + panelB +  
@@ -156,8 +151,6 @@ Figure1 <- panelA + panelB + panelA + panelB +
 
 ggsave("figures/Figure1.pdf", limitsize = FALSE, 
        units = c("px"), Figure1, width = 3300, height = 2800)
+
 ggsave("figures/Figure1.png", limitsize = FALSE, 
        units = c("px"), Figure1, width = 3300, height = 2800, bg = "white")
-
-
-
