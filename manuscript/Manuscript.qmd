@@ -7,6 +7,7 @@ linestretch: 1.2
 linkcolor: blue
 documentclass: article
 max-width: 100%
+number-sections: false
 format:
   html: default
   pdf:
