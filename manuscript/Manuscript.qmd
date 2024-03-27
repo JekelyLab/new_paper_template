@@ -106,3 +106,10 @@ If we update the data, the script can recalculate the variable we want to refer 
 We would like to thank the Jekely lab for the R project template (<https://github.com/JekelyLab/new_paper_template>) we used to write this paper. This work was funded by ...
 
 ## References
+
+
+<!--
+## See https://github.com/hypothesis/client
+## Add commenting functionality with this script
+-->
+<script src="https://hypothes.is/embed.js" async></script>
