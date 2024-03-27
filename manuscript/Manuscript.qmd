@@ -112,4 +112,4 @@ We would like to thank the Jekely lab for the R project template (<https://githu
 ## See https://github.com/hypothesis/client
 ## Add commenting functionality with this script
 -->
-<script src="https://hypothes.is/embed.js" async></script>
+<script src="hypothes.is/embed.js" async></script>
