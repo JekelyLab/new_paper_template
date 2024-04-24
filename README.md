@@ -33,10 +33,10 @@ Please cite this compendium as:
 
 The project directory contains:
 
-- [:file_folder: text](/text/Manuscript.qmd): Quarto source document for
-  manuscript. Includes text, references and inserts the latest version
-  of the figures from the /figures folder. There is also a rendered html
-  version, `Manuscript.html`, suitable for reading.
+- [:file_folder: text](manuscript/Manuscript.qmd): Quarto source
+  document for manuscript. Includes text, references and inserts the
+  latest version of the figures from the /figures folder. There is also
+  a rendered html version, `Manuscript.html`, suitable for reading.
 
 - [:file_folder: data](analysis/data): Data used in the analysis.
 
