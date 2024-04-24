@@ -18,7 +18,7 @@ This repository contains the data and code for our paper:
 Our pre-print is online here:
 
 > Authors, (YYYY). *Title of your paper goes here*. Name of
-> journal/book, Accessed 14 Feb 2024. Online at
+> journal/book, Accessed 24 Apr 2024. Online at
 > <https://doi.org/xxx/xxx>
 
 ### How to cite
@@ -26,7 +26,7 @@ Our pre-print is online here:
 Please cite this compendium as:
 
 > Authors, (2024). *Compendium of R code and data for Title of your
-> paper goes here*. Accessed 14 Feb 2024. Online at
+> paper goes here*. Accessed 24 Apr 2024. Online at
 > <https://doi.org/xxx/xxx>
 
 ## Contents
@@ -38,15 +38,16 @@ The project directory contains:
   of the figures from the /figures folder. There is also a rendered html
   version, `Manuscript.html`, suitable for reading.
 
-- [:file_folder: data](/data): Data used in the analysis.
+- [:file_folder: data](analysis/data): Data used in the analysis.
 
-- [:file_folder: figures](/figures): Plots and other illustrations
+- [:file_folder: figures](manuscript/figures): Plots and other
+  illustrations
 
-- [:file_folder: supplements](/supplements): Supplementary materials
-  including notes and other documents prepared and collected during the
-  analysis.
+- [:file_folder: supplements](manuscript/supplements): Supplementary
+  materials including notes and other documents prepared and collected
+  during the analysis.
 
-- [:file_folder: source_data](/source_data): Source data files
+- [:file_folder: source_data](manuscript/source_data): Source data files
   associated with each figure containing all data points that have been
   plotted in the figure. These files should be submitted together with
   the paper.

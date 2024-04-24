@@ -46,15 +46,15 @@ The project directory contains:
 There is also a rendered html version,
     `Manuscript.html`, suitable for reading.
     
-  - [:file\_folder: data](/data): Data used in the analysis.
-  - [:file\_folder: figures](/figures): Plots and other
+  - [:file\_folder: data](analysis/data): Data used in the analysis.
+  - [:file\_folder: figures](manuscript/figures): Plots and other
     illustrations
   - [:file\_folder:
-    supplements](/supplements):
+    supplements](manuscript/supplements):
     Supplementary materials including notes and other documents
     prepared and collected during the analysis.
   - [:file\_folder:
-    source_data](/source_data):
+    source_data](manuscript/source_data):
     Source data files associated with each figure containing all data points that have been plotted in the figure. These files should be submitted together with the paper.
 
 ## How to run in your browser or download and run locally
