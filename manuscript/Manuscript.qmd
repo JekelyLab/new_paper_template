@@ -1,5 +1,7 @@
 ---
 title: "New paper template - title here"
+subtitle: |
+\raggedright  xy^1,2,\*^, yz^1,2,\*^  \newline<br>^1^Living Systems Institute, University of Exeter, Exeter, EX4 4QD, United Kingdom \newline<br>^2^ \newline<br>^2^Heidelberg University, Centre for Organismal Studies (COS), 69120 Heidelberg, Germany \newline<br>^4^BioSciences, University of Exeter, Stocker Road, Exeter EX4 4QD, Exeter, United Kingdom\newline<br> ^5^Sars Centre \newline<br> ^\*^Correspondence:   \newline<br>
 mainfont: Arial
 monofont: DejaVu Sans Mono #Times New Roman
 fontsize: 11pt
@@ -7,17 +9,17 @@ linestretch: 1.2
 linkcolor: blue
 documentclass: article
 max-width: 100%
-number-sections: false
 format:
-  html: default
+  html:
+    embed-resources: true 
   pdf:
     pdf-engine: xelatex
-    number-sections: true
+    number-sections: false
     margin-left: 0.8in
     margin-right: 0.8in
     margin-top: 0.8in
     margin-bottom: 0.8in
-    toc: true
+    toc: false
     keep-tex: true
     include-in-header:
       text: |
